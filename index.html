@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>QBasis – Agile Schulentwicklung kollaborativ</title>
+  <meta name="description" content="Kollaborative Simulation für QBasis: agile Schulentwicklung für Schulleitungen in Gruppenräumen.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <p class="eyebrow">QBasis · Erstqualifizierung · kollaborative Simulation</p>
+    <h1>Agile Schulentwicklung gemeinsam erleben</h1>
+    <p>Vereinfachte, moderierte Simulation für 10–30 Schulleitungen in Gruppenräumen.</p>
+  </div>
+  <div id="connectionBadge" class="badge local">Lokale Demo</div>
+</header>
+
+<main class="shell">
+  <section id="setup" class="panel">
+    <h2>Gruppenraum starten oder beitreten</h2>
+    <p class="notice">
+      <strong>Für echte Zusammenarbeit:</strong> Firebase-Konfiguration in <code>js/firebase-config.js</code> eintragen und die Seite über GitHub Pages hosten. Ohne Firebase läuft nur eine lokale Demo.
+    </p>
+
+    <div class="setup-grid">
+      <label>Raumcode / Gruppenraum
+        <input id="roomInput" placeholder="z. B. QBASIS-01">
+      </label>
+      <label>Name
+        <input id="nameInput" placeholder="Name / Gruppe">
+      </label>
+      <label>Moderations-PIN
+        <input id="pinInput" placeholder="nur für Moderation">
+      </label>
+    </div>
+
+    <div class="actions">
+      <button id="createRoomBtn" class="primary">Gruppenraum als Moderation erstellen</button>
+      <button id="joinRoomBtn">Als Teilnehmer/in beitreten</button>
+      <button id="joinModeratorBtn">Als Moderation beitreten</button>
+    </div>
+
+    <details class="help">
+      <summary>Empfohlene Gruppengröße</summary>
+      <p>Für QBasis: 4–6 Personen pro Gruppenraum. Bei 30 Personen also 5–6 parallele Räume, z. B. <code>QBASIS-01</code> bis <code>QBASIS-06</code>.</p>
+    </details>
+  </section>
+
+  <section id="game" class="hidden">
+    <section class="panel head">
+      <div>
+        <h2 id="roomTitle">Gruppenraum</h2>
+        <p id="phaseExplain"></p>
+        <p id="roleNotice" class="small"></p>
+      </div>
+      <div class="actions">
+        <button id="nextPhaseBtn" class="primary">Nächste Phase</button>
+        <button id="exportBtn">Ergebnisse exportieren</button>
+        <button id="resetRoomBtn" class="danger">Raum zurücksetzen</button>
+      </div>
+    </section>
+
+    <section class="grid">
+      <aside class="panel side">
+        <h3>Teilnehmende</h3>
+        <div id="participants"></div>
+
+        <h3>Spielstand</h3>
+        <div id="metrics"></div>
+
+        <h3>Aktueller Schritt</h3>
+        <div id="currentStep" class="sidebox"></div>
+
+        <h3>Eigene Handlungsoptionen</h3>
+        <div id="storedSolutionsBox" class="sidebox"></div>
+
+        <h3>Protokoll</h3>
+        <div id="log" class="log"></div>
+      </aside>
+
+      <section>
+        <section id="phasePanel" class="panel"></section>
+        <section id="teamProfile" class="panel"></section>
+
+        <section class="board">
+          <div class="panel">
+            <h3>Sammlung der Entwicklungsvorhaben</h3>
+            <p class="small">Jede Person wählt genau ein Vorhaben für den Entwicklungszyklus.</p>
+            <div id="backlog" class="cards"></div>
+          </div>
+
+          <div class="panel">
+            <h3>In Bearbeitung</h3>
+            <div id="activeWork" class="cards"></div>
+          </div>
+
+          <div class="panel">
+            <h3>Blockiert</h3>
+            <div id="blocked" class="cards"></div>
+          </div>
+
+          <div class="panel">
+            <h3>Abgeschlossen</h3>
+            <div id="done" class="cards"></div>
+          </div>
+        </section>
+      </section>
+    </section>
+  </section>
+</main>
+
+<div id="zoomOverlay" class="zoom">
+  <div id="zoomCard" class="zoomcard"></div>
+</div>
+
+<script src="js/data.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
